@@ -131,7 +131,7 @@ const Index = () => {
           <nav className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Icon name="Car" size={32} className="text-orange-500" />
-              <span className="text-2xl font-bold text-orange-500">
+              <span className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
                 АвтоДрайв
               </span>
             </div>
@@ -145,7 +145,7 @@ const Index = () => {
               <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors">Контакты</a>
             </div>
 
-            <Button className="bg-orange-500 hover:bg-orange-600">
+            <Button className="bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700">
               <Icon name="Phone" size={16} className="mr-2" />
               Записаться
             </Button>
@@ -161,7 +161,7 @@ const Index = () => {
             <div className="animate-fade-in">
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Получите права{' '}
-                <span className="text-orange-500">
+                <span className="bg-gradient-to-r from-orange-500 to-blue-600 bg-clip-text text-transparent">
                   быстро и надёжно
                 </span>
               </h1>
@@ -171,7 +171,7 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 px-8">
+                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700 px-8">
                   <Icon name="BookOpen" size={20} className="mr-2" />
                   Записаться на курс
                 </Button>
@@ -230,7 +230,7 @@ const Index = () => {
               <Card key={index} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-orange-200">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary" className="bg-orange-100 text-gray-700">
+                    <Badge variant="secondary" className="bg-gradient-to-r from-orange-100 to-blue-100 text-gray-700">
                       {course.category}
                     </Badge>
                     <div className="text-2xl font-bold text-orange-500">{course.price}</div>
@@ -249,7 +249,7 @@ const Index = () => {
                       <span>{course.lessons}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                  <Button className="w-full bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700">
                     Записаться на курс
                   </Button>
                 </CardContent>
@@ -542,7 +542,7 @@ const Index = () => {
                     </select>
                   </div>
                   
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                  <Button className="w-full bg-gradient-to-r from-orange-500 to-blue-600 hover:from-orange-600 hover:to-blue-700">
                     Отправить заявку
                   </Button>
                 </CardContent>
