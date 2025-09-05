@@ -1,38 +1,107 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Calendar, CalendarDays } from '@/components/ui/calendar';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
+  const heroStats = [
+    { value: '95%', label: 'Сдают с 1 раза', icon: 'Trophy' },
+    { value: '2000+', label: 'Выпускников', icon: 'Users' },
+    { value: '15', label: 'Лет опыта', icon: 'Calendar' },
+    { value: '50+', label: 'Инструкторов', icon: 'UserCheck' }
+  ];
+
   const courses = [
     {
-      title: "Базовый курс",
-      description: "Полный курс обучения вождению с нуля",
+      title: "Базовый курс категории B",
+      description: "Полный курс обучения вождению легкового автомобиля",
       price: "25,000₽",
       duration: "2-3 месяца",
       lessons: "40 часов теории + 40 часов практики",
-      category: "Категория B"
+      category: "Категория B",
+      features: ["Теоретические занятия", "Практическое вождение", "Подготовка к экзамену"]
     },
     {
       title: "Ускоренный курс", 
-      description: "Интенсивное обучение за месяц",
+      description: "Интенсивное обучение за короткий срок",
       price: "35,000₽",
       duration: "1 месяц",
       lessons: "30 часов теории + 30 часов практики",
-      category: "Категория B"
+      category: "Категория B",
+      features: ["Ежедневные занятия", "Индивидуальный подход", "Быстрая подготовка"]
     },
     {
-      title: "Мотоцикл",
+      title: "Мотоцикл категории A",
       description: "Обучение вождению мотоцикла",
       price: "20,000₽", 
       duration: "1-2 месяца",
       lessons: "20 часов теории + 25 часов практики",
-      category: "Категория A"
+      category: "Категория A",
+      features: ["Теория ПДД", "Практика на площадке", "Вождение в городе"]
+    }
+  ];
+
+  const advantages = [
+    {
+      icon: 'Award',
+      title: 'Высокий процент сдачи',
+      description: '95% наших учеников сдают экзамен с первого раза благодаря качественной подготовке'
+    },
+    {
+      icon: 'Car',
+      title: 'Современный автопарк',
+      description: 'Новые автомобили 2022-2024 года с механической и автоматической коробкой передач'
+    },
+    {
+      icon: 'Users',
+      title: 'Опытные инструкторы',
+      description: 'Профессиональные инструкторы с многолетним стажем и индивидуальным подходом'
+    },
+    {
+      icon: 'Clock',
+      title: 'Гибкое расписание',
+      description: 'Удобное время занятий, включая вечерние часы и выходные дни'
+    },
+    {
+      icon: 'MapPin',
+      title: 'Удобное расположение',
+      description: 'Несколько филиалов по городу, близко к метро и остановкам общественного транспорта'
+    },
+    {
+      icon: 'Shield',
+      title: 'Официальная лицензия',
+      description: 'Лицензированная автошкола с полным пакетом разрешительных документов'
+    }
+  ];
+
+  const services = [
+    {
+      icon: 'BookOpen',
+      title: 'Теоретические занятия',
+      description: 'Изучение ПДД в современных аудиториях с интерактивными материалами',
+      link: '/theory'
+    },
+    {
+      icon: 'Car',
+      title: 'Практическое вождение',
+      description: 'Индивидуальные занятия с инструктором на учебном автомобиле',
+      link: '/practice'
+    },
+    {
+      icon: 'FileText',
+      title: 'Подготовка документов',
+      description: 'Помощь в оформлении всех необходимых документов для получения прав',
+      link: '/documents'
+    },
+    {
+      icon: 'Heart',
+      title: 'Медицинская комиссия',
+      description: 'Прохождение медкомиссии в партнерских медицинских центрах',
+      link: '/medical'
     }
   ];
 
@@ -42,21 +111,24 @@ const Index = () => {
       experience: "15 лет опыта",
       specialty: "Категория B, C",
       rating: 4.9,
-      image: "img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg"
+      image: "/img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg",
+      description: "Главный инструктор с большим опытом подготовки водителей"
     },
     {
       name: "Мария Иванова", 
       experience: "12 лет опыта",
       specialty: "Категория B, A",
       rating: 4.8,
-      image: "img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg"
+      image: "/img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg",
+      description: "Специалист по обучению женщин вождению"
     },
     {
       name: "Сергей Козлов",
       experience: "8 лет опыта", 
       specialty: "Категория B",
       rating: 4.7,
-      image: "img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg"
+      image: "/img/1cd7e01b-d52e-4080-85c8-2bead7b7d1bf.jpg",
+      description: "Молодой перспективный инструктор"
     }
   ];
 
@@ -65,96 +137,75 @@ const Index = () => {
       name: "Анна Смирнова",
       text: "Отличная автошкола! Инструкторы профессиональные, машины в хорошем состоянии. Сдала экзамен с первого раза!",
       rating: 5,
-      course: "Базовый курс"
+      course: "Базовый курс",
+      date: "15 марта 2024"
     },
     {
       name: "Дмитрий Волков", 
       text: "Быстро и качественно обучили. Особенно понравился ускоренный курс - за месяц получил права.",
       rating: 5,
-      course: "Ускоренный курс"
+      course: "Ускоренный курс",
+      date: "8 марта 2024"
     },
     {
       name: "Елена Кузнецова",
       text: "Замечательные инструкторы, терпеливые и внимательные. Рекомендую всем!",
       rating: 4,
-      course: "Базовый курс"
+      course: "Базовый курс",
+      date: "1 марта 2024"
     }
   ];
 
-  const carFleet = [
+  const news = [
     {
-      model: "Lada Vesta",
-      year: "2023",
-      transmission: "Механика",
-      features: ["Кондиционер", "ABS", "Подушки безопасности"]
+      title: "Новые изменения в ПДД с 1 апреля 2024",
+      description: "Обзор последних изменений в правилах дорожного движения",
+      date: "25 марта 2024",
+      image: "/img/58c55be2-a599-4509-acda-31e5b12bbab8.jpg",
+      link: "/news/pdd-changes-2024"
     },
     {
-      model: "Hyundai Solaris",
-      year: "2022", 
-      transmission: "Автомат",
-      features: ["Кондиционер", "ABS", "Подушки безопасности", "Камера заднего вида"]
+      title: "Открытие нового филиала на Юго-Западе",
+      description: "Теперь наши услуги доступны и в районе Юго-Западная",
+      date: "20 марта 2024",
+      image: "/img/4efb27a7-19c6-4871-82ad-80166ad44199.jpg",
+      link: "/news/new-branch"
     },
     {
-      model: "Renault Logan",
-      year: "2023",
-      transmission: "Механика",
-      features: ["Кондиционер", "ABS", "Подушки безопасности"]
+      title: "Скидки для студентов до конца месяца",
+      description: "Специальные условия обучения для студентов ВУЗов",
+      date: "15 марта 2024",
+      image: "/img/58c55be2-a599-4509-acda-31e5b12bbab8.jpg",
+      link: "/news/student-discount"
     }
   ];
 
-  const scheduleData = {
-    "Понедельник": [
-      { time: "09:00", instructor: "А.Петров", type: "Теория" },
-      { time: "11:00", instructor: "М.Иванова", type: "Практика" },
-      { time: "14:00", instructor: "С.Козлов", type: "Практика" },
-      { time: "16:00", instructor: "А.Петров", type: "Теория" }
-    ],
-    "Вторник": [
-      { time: "08:00", instructor: "М.Иванова", type: "Практика" },
-      { time: "10:00", instructor: "А.Петров", type: "Теория" },
-      { time: "13:00", instructor: "С.Козлов", type: "Практика" },
-      { time: "15:00", instructor: "М.Иванова", type: "Теория" }
-    ],
-    "Среда": [
-      { time: "09:00", instructor: "С.Козлов", type: "Практика" },
-      { time: "11:00", instructor: "А.Петров", type: "Практика" },
-      { time: "14:00", instructor: "М.Иванова", type: "Теория" },
-      { time: "16:00", instructor: "С.Козлов", type: "Практика" }
-    ]
-  };
+  const faq = [
+    {
+      question: "Сколько длится обучение?",
+      answer: "Стандартный курс длится 2-3 месяца, ускоренный - 1 месяц. Все зависит от выбранной программы и интенсивности занятий."
+    },
+    {
+      question: "Какие документы нужны для поступления?",
+      answer: "Паспорт, медицинская справка, фотографии 3x4 см (6 шт.), справка об отсутствии лишения прав."
+    },
+    {
+      question: "Можно ли заниматься в выходные?",
+      answer: "Да, мы работаем 7 дней в неделю. Занятия проводятся с 8:00 до 20:00, включая выходные дни."
+    }
+  ];
+
+  const partners = [
+    { name: "ГИБДД", logo: "/img/placeholder.svg" },
+    { name: "Медцентр Здоровье", logo: "/img/placeholder.svg" },
+    { name: "Автосалон Премиум", logo: "/img/placeholder.svg" },
+    { name: "Страховая компания", logo: "/img/placeholder.svg" }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-lg border-b border-gray-200 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Icon name="Car" size={32} className="text-orange-500" />
-              <span className="text-2xl font-bold text-orange-500">
-                АвтоДрайв
-              </span>
-            </div>
-            
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#home" className="text-gray-700 hover:text-orange-500 transition-colors">Главная</a>
-              <a href="#courses" className="text-gray-700 hover:text-orange-500 transition-colors">Курсы</a>
-              <a href="#instructors" className="text-gray-700 hover:text-orange-500 transition-colors">Инструкторы</a>
-              <a href="#pricing" className="text-gray-700 hover:text-orange-500 transition-colors">Цены</a>
-              <a href="#reviews" className="text-gray-700 hover:text-orange-500 transition-colors">Отзывы</a>
-              <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors">Контакты</a>
-            </div>
-
-            <Button className="bg-orange-500 hover:bg-orange-600">
-              <Icon name="Phone" size={16} className="mr-2" />
-              Записаться
-            </Button>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero Section */}
-      <section id="home" className="py-20 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-600/10"></div>
         <div className="container mx-auto px-4 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -171,57 +222,84 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600 px-8">
-                  <Icon name="BookOpen" size={20} className="mr-2" />
-                  Записаться на курс
-                </Button>
-                <Button variant="outline" size="lg" className="border-2">
-                  <Icon name="Play" size={20} className="mr-2" />
-                  Смотреть видео
-                </Button>
+                <Link to="/courses">
+                  <Button size="lg" className="bg-orange-500 hover:bg-orange-600 px-8">
+                    <Icon name="BookOpen" size={20} className="mr-2" />
+                    Выбрать курс
+                  </Button>
+                </Link>
+                <Link to="/about">
+                  <Button variant="outline" size="lg" className="border-2">
+                    <Icon name="Play" size={20} className="mr-2" />
+                    О нас подробнее
+                  </Button>
+                </Link>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-orange-500">95%</div>
-                  <div className="text-sm text-gray-600">Сдают с 1 раза</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-blue-600">2000+</div>
-                  <div className="text-sm text-gray-600">Выпускников</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-purple-600">15</div>
-                  <div className="text-sm text-gray-600">Лет опыта</div>
-                </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {heroStats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <Icon name={stat.icon as any} size={24} className="text-orange-500 mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                    <div className="text-sm text-gray-600">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="relative animate-scale-in">
               <div className="rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img 
-                  src="img/58c55be2-a599-4509-acda-31e5b12bbab8.jpg" 
+                  src="/img/58c55be2-a599-4509-acda-31e5b12bbab8.jpg" 
                   alt="Обучение вождению"
                   className="w-full h-96 object-cover"
                 />
               </div>
               <div className="absolute -top-4 -right-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                🚗 Новые авто
+                🚗 Новые авто 2024
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Advantages Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Почему выбирают нас
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Мы предлагаем качественное обучение вождению с гарантией результата
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {advantages.map((advantage, index) => (
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <CardContent className="pt-6 text-center">
+                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 transition-colors">
+                    <Icon name={advantage.icon as any} size={32} className="text-orange-500 group-hover:text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{advantage.title}</h3>
+                  <p className="text-gray-600">{advantage.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Courses Section */}
-      <section id="courses" className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Курсы обучения
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Выберите подходящий курс обучения вождению. У нас есть программы для всех уровней подготовки.
+              Выберите подходящий курс обучения вождению
             </p>
           </div>
 
@@ -248,10 +326,20 @@ const Index = () => {
                       <Icon name="BookOpen" size={16} className="text-gray-500" />
                       <span>{course.lessons}</span>
                     </div>
+                    <div className="space-y-1">
+                      {course.features.map((feature, fIndex) => (
+                        <div key={fIndex} className="flex items-center gap-2 text-sm">
+                          <Icon name="Check" size={14} className="text-green-500" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
-                    Записаться на курс
-                  </Button>
+                  <Link to="/courses">
+                    <Button className="w-full bg-orange-500 hover:bg-orange-600">
+                      Подробнее о курсе
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -259,78 +347,41 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Schedule Section */}
-      <section id="schedule" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Services Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Расписание занятий
+              Наши услуги
             </h2>
             <p className="text-xl text-gray-600">
-              Выберите удобное время для занятий
+              Полный спектр услуг для получения водительских прав
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Календарь</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Calendar
-                    mode="single"
-                    selected={selectedDate}
-                    onSelect={setSelectedDate}
-                    className="rounded-md border"
-                  />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <CardContent className="pt-6">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name={service.icon as any} size={32} className="text-blue-600" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h3>
+                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <Link to={service.link}>
+                    <Button variant="outline" size="sm">
+                      Подробнее
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
-            </div>
-
-            <div className="lg:col-span-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Расписание на неделю</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Tabs defaultValue="Понедельник" className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="Понедельник">Понедельник</TabsTrigger>
-                      <TabsTrigger value="Вторник">Вторник</TabsTrigger>
-                      <TabsTrigger value="Среда">Среда</TabsTrigger>
-                    </TabsList>
-                    
-                    {Object.entries(scheduleData).map(([day, lessons]) => (
-                      <TabsContent key={day} value={day} className="space-y-3">
-                        {lessons.map((lesson, index) => (
-                          <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg border hover:border-orange-200 transition-colors">
-                            <div className="flex items-center gap-3">
-                              <div className="text-lg font-semibold text-orange-500">
-                                {lesson.time}
-                              </div>
-                              <div>
-                                <div className="font-medium">{lesson.instructor}</div>
-                                <div className="text-sm text-gray-600">{lesson.type}</div>
-                              </div>
-                            </div>
-                            <Button variant="outline" size="sm">
-                              Записаться
-                            </Button>
-                          </div>
-                        ))}
-                      </TabsContent>
-                    ))}
-                  </Tabs>
-                </CardContent>
-              </Card>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Instructors Section */}
-      <section id="instructors" className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -358,7 +409,8 @@ const Index = () => {
                   
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{instructor.name}</h3>
                   <p className="text-gray-600 mb-2">{instructor.experience}</p>
-                  <p className="text-sm text-blue-600 mb-4">{instructor.specialty}</p>
+                  <p className="text-sm text-blue-600 mb-2">{instructor.specialty}</p>
+                  <p className="text-sm text-gray-500 mb-4">{instructor.description}</p>
                   
                   <div className="flex items-center justify-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -372,9 +424,11 @@ const Index = () => {
                     <span className="text-sm text-gray-600 ml-2">{instructor.rating}</span>
                   </div>
                   
-                  <Button variant="outline" className="w-full">
-                    Записаться к инструктору
-                  </Button>
+                  <Link to="/instructors">
+                    <Button variant="outline" className="w-full">
+                      Подробнее
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -383,7 +437,7 @@ const Index = () => {
       </section>
 
       {/* Reviews Section */}
-      <section id="reviews" className="py-20 bg-gradient-to-br from-orange-50 to-blue-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -414,48 +468,54 @@ const Index = () => {
                   <div className="border-t pt-4">
                     <div className="font-semibold text-gray-900">{review.name}</div>
                     <div className="text-sm text-gray-600">{review.course}</div>
+                    <div className="text-xs text-gray-500">{review.date}</div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+
+          <div className="text-center mt-8">
+            <Link to="/reviews">
+              <Button variant="outline" size="lg">
+                Все отзывы
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Car Fleet Section */}
-      <section id="fleet" className="py-20 bg-white">
+      {/* News Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Автопарк
+              Новости и статьи
             </h2>
             <p className="text-xl text-gray-600">
-              Современные автомобили для комфортного обучения
+              Актуальная информация о ПДД и обучении
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {carFleet.map((car, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300">
-                <CardContent className="pt-6">
-                  <div className="text-center mb-6">
-                    <Icon name="Car" size={48} className="text-orange-500 mx-auto mb-3" />
-                    <h3 className="text-xl font-bold text-gray-900">{car.model}</h3>
-                    <p className="text-gray-600">{car.year} год</p>
-                    <Badge variant="outline" className="mt-2">
-                      {car.transmission}
-                    </Badge>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-900 mb-2">Оснащение:</h4>
-                    {car.features.map((feature, fIndex) => (
-                      <div key={fIndex} className="flex items-center gap-2 text-sm">
-                        <Icon name="Check" size={14} className="text-green-500" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+            {news.map((article, index) => (
+              <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="aspect-video overflow-hidden rounded-t-lg">
+                  <img 
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardContent className="pt-4">
+                  <div className="text-sm text-gray-500 mb-2">{article.date}</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{article.title}</h3>
+                  <p className="text-gray-600 mb-4">{article.description}</p>
+                  <Link to={article.link}>
+                    <Button variant="outline" size="sm">
+                      Читать далее
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -463,111 +523,92 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-900 text-white">
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">Контакты</h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Icon name="MapPin" size={24} className="text-orange-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Адрес</h3>
-                    <p className="text-gray-300">г. Москва, ул. Ленина, 123</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <Icon name="Phone" size={24} className="text-orange-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Телефон</h3>
-                    <p className="text-gray-300">+7 (495) 123-45-67</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <Icon name="Mail" size={24} className="text-orange-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Email</h3>
-                    <p className="text-gray-300">info@autodrive.ru</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <Icon name="Clock" size={24} className="text-orange-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold mb-1">Режим работы</h3>
-                    <p className="text-gray-300">Пн-Пт: 9:00-19:00</p>
-                    <p className="text-gray-300">Сб-Вс: 10:00-16:00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <Card className="bg-white/10 border-white/20">
-                <CardHeader>
-                  <CardTitle className="text-white">Записаться на консультацию</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Оставьте заявку и мы свяжемся с вами в течение часа
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Имя</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-300"
-                      placeholder="Ваше имя"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Телефон</label>
-                    <input 
-                      type="tel" 
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white placeholder-gray-300"
-                      placeholder="+7 (999) 999-99-99"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Курс</label>
-                    <select className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-md text-white">
-                      <option value="">Выберите курс</option>
-                      <option value="basic">Базовый курс</option>
-                      <option value="intensive">Ускоренный курс</option>
-                      <option value="motorcycle">Мотоцикл</option>
-                    </select>
-                  </div>
-                  
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
-                    Отправить заявку
-                  </Button>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Часто задаваемые вопросы
+            </h2>
+            <p className="text-xl text-gray-600">
+              Ответы на популярные вопросы о обучении
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            {faq.map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <Icon name="HelpCircle" size={20} className="text-orange-500" />
+                    {item.question}
+                  </h3>
+                  <p className="text-gray-600 pl-7">{item.answer}</p>
                 </CardContent>
               </Card>
-            </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link to="/faq">
+              <Button variant="outline" size="lg">
+                Все вопросы и ответы
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black text-white py-8">
+      {/* Partners Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-blue-50">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <Icon name="Car" size={24} className="text-orange-500" />
-              <span className="text-xl font-bold">АвтоДрайв</span>
-            </div>
-            
-            <div className="text-center md:text-right">
-              <p className="text-gray-400">© 2024 АвтоДрайв. Все права защищены.</p>
-              <p className="text-sm text-gray-500">Лицензия ГИБДД № 123456</p>
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Наши партнеры
+            </h2>
+            <p className="text-xl text-gray-600">
+              Мы сотрудничаем с ведущими организациями
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {partners.map((partner, index) => (
+              <div key={index} className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Icon name="Building" size={32} className="text-gray-400" />
+                </div>
+                <h3 className="font-semibold text-gray-900">{partner.name}</h3>
+              </div>
+            ))}
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            Готовы начать обучение?
+          </h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Запишитесь на бесплатную консультацию и узнайте все подробности о наших курсах
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact">
+              <Button size="lg" variant="secondary" className="bg-white text-orange-500 hover:bg-gray-100">
+                <Icon name="Phone" size={20} className="mr-2" />
+                Записаться на консультацию
+              </Button>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-500">
+                <Icon name="Calculator" size={20} className="mr-2" />
+                Рассчитать стоимость
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
